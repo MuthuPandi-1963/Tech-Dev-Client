@@ -51,12 +51,12 @@ const GadgetSlider = () => {
                     : "lg:flex-row-reverse"
                 } items-center`}
               >
-                <div className="p-4 flex-grow-1 order-1 self-start lg:pt-12">
-                  <h2 className="text-2xl lg:text-5xl mb-6 font-bold">
+                <div className="lg:p-4 px-4 pb-8 flex-grow-1 order-1 self-start lg:pt-12">
+                  <h2 className="text-2xl lg:text-5xl mb-2 font-bold">
                     {slide.Title}
                   </h2>
                   <p>{slide.Description}</p>
-                  <div className="flex gap-x-6 lg:mt-6 mt-2">
+                  <div className="flex gap-x-6 lg:mt-6 my-2">
                     <Link to={`/shopping/category/${slide.categoryType+"_"+slide.Title}`}>
                       <button className="lg:px-6 mt-4 bg-blue-800 text-white px-4 py-2 rounded">
                         Buy {slide.Title}
@@ -72,7 +72,7 @@ const GadgetSlider = () => {
                 <img
                   src={slide.Image}
                   alt={slide.Title}
-                  className="rounded-xl lg:h-[500px] h-[280px] w-full object-contain"
+                  className="rounded-xl lg:h-[500px] h-[200px] w-full object-contain"
                 />
               </div>
             </SwiperSlide>

@@ -26,7 +26,7 @@ const MobileNavBar = ({ navigation, categories, categoriesOpen, setCategoriesOpe
 
       {/* Mobile menu */}
       <div
-        className={`fixed right-0 rounded-tl-xl  bottom-0 top-0 z-50 px-4 w-[320px] bg-white shadow-lg transform transition-all duration-500 ease-in-out ${
+        className={`fixed right-0 rounded-tl-xl  bottom-0 top-0 z-50 px-4 w-[300px] bg-white shadow-lg transform transition-all duration-600 ease-out ${
           user ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >
@@ -58,15 +58,18 @@ const MobileNavBar = ({ navigation, categories, categoriesOpen, setCategoriesOpe
             item.name === "Categories" ? (
               <div key={item.name} className="relative">
                 <div className="flex justify-start">
-                  <button
-                    onClick={() => setCategoriesOpen(!categoriesOpen)}
+                  <div
+                    
                     className="w-full flex justify-between items-center rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
                   >
-                    <div className="flex items-center gap-x-2">
+                    <Link to={"/shopping/category"}
+                    className="flex items-center gap-x-2">
                       {item.name}
-                    </div>
+                    </Link>
+                    <button onClick={() => setCategoriesOpen(!categoriesOpen)}>
                     <KeyboardArrowDownOutlinedIcon />
                   </button>
+                  </div>
                 </div>
                 {categoriesOpen && (
                   <div className="grid grid-cols-2 gap-6 my-6">
