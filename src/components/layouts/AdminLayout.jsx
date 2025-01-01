@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { DiamondIcon } from "../../utilities/Icons";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector } from "react-redux";
 import HomeIcon from "@mui/icons-material/Home";
@@ -9,6 +8,7 @@ import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantity
 import CategoryIcon from "@mui/icons-material/Category";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import { DevicesOther } from "@mui/icons-material";
 const NAVIGATION = [
   {
     segment: "",
@@ -50,8 +50,10 @@ function Sidebar() {
     >
       {/* Header */}
       <div className="flex items-center p-4 text-center border-b border-gray-700">
-        <DiamondIcon classStyle="text-white w-9 h-9" color="white" />
-        <h1 className="text-xl font-bold hidden lg:block">Admin Panel</h1>
+      <DevicesOther className="text-white w-9 h-9" sx={{ fontSize: "30px" }} />
+                    <Link to="" className="text-white w-9 h-9 text-xl font-bold hidden lg:block">
+                      Tech-Dev
+                    </Link>
       </div>
 
       {/* Navigation */}

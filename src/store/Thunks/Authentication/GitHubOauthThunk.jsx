@@ -9,7 +9,7 @@ const GitHubLoginThunk = createAsyncThunk(
   async (githubToken, { rejectWithValue }) => {
     try {
       // Send the GitHub token to the backend for verification
-      const response = await axiosInstance.get("https://gadgets-heaven-81z9.onrender.com/oauth/github", { params: { token: githubToken } }, { withCredentials: true });
+      const response = await axiosInstance.get("/oauth/github", { params: { token: githubToken } }, { withCredentials: true });
       
       // If successful, show a success toast
       toast.success(response.data.message);

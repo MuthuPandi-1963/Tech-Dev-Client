@@ -9,8 +9,10 @@ const AddCategory = () => {
     categoryName: "",
     categoryDescription: "",
     categoryImage: null,
+    categoryNavbarImage : null
   });
   const [previewImage, setPreviewImage] = useState(null);
+  const [previewNavbarImage, setPreviewNavbarImage] = useState(null);
   const [message, setMessage] = useState(null);
   const { isLoading } = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -40,11 +42,31 @@ const AddCategory = () => {
       setFormData((prevData) => ({ ...prevData, categoryImage: file }));
     }
   };
+  const handleFileNavbarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        setMessage("Please upload a valid image file.");
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        setMessage("File size should be less than 5MB.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => setPreviewNavbarImage(reader.result);
+      reader.readAsDataURL(file);
+
+      setFormData((prevData) => ({ ...prevData, categoryNavbarImage: file }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.categoryName || !formData.categoryDescription || !formData.categoryImage) {
+    if (!formData.categoryName || !formData.categoryDescription || !formData.categoryImage || !formData.categoryNavbarImage) {
       setMessage("Please fill in all fields and upload an image.");
       return;
     }
@@ -52,14 +74,19 @@ const AddCategory = () => {
     const Data = new FormData();
     Data.append("file", formData.categoryImage);
     Data.append("upload_preset", "gadgets heaven");
-    // console.log("Cloudinary URL:", import.meta.env.VITE_CLOUDINARY_URL);
-    // console.log(import.meta.env);
+
+    const NavbarImageData = new FormData();
+    NavbarImageData.append("file", formData.categoryNavbarImage);
+    NavbarImageData.append("upload_preset", "gadgets heaven");
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dh2r2wxw0/image/upload",
-        // import.meta.env.VITE_CLOUDINARY_URL,
+        import.meta.env.VITE_CLOUDINARY_URL,
         Data
+      );
+      const navbarImageResponse = await axios.post(
+        import.meta.env.VITE_CLOUDINARY_URL,
+        NavbarImageData
       );
 
       const CategoryResponse = await dispatch(
@@ -67,12 +94,13 @@ const AddCategory = () => {
           categoryName: formData.categoryName,
           categoryDescription: formData.categoryDescription,
           categoryImage: response.data.secure_url,
+          categoryNavbarImage : navbarImageResponse.data.secure_url
         })
       );
 
       if (CategoryResponse.payload?.success) {
         // setMessage("Category added successfully!");
-        setFormData({ categoryName: "", categoryDescription: "", categoryImage: null });
+        setFormData({ categoryName: "", categoryDescription: "", categoryImage: null,categoryNavbarImage:null });
         setPreviewImage(null);
         return navigate("/admin/categories") 
       } else {
@@ -126,6 +154,24 @@ const AddCategory = () => {
           {previewImage && (
             <img
               src={previewImage}
+              alt="Preview"
+              className="w-32 h-32 mt-4 border rounded-lg"
+            />
+          )}
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Category Navbar Image</label>
+          <input
+            type="file"
+            name="categoryImage"
+            accept="image/*"
+            onChange={handleFileNavbarChange}
+            disabled={isLoading}
+            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {previewNavbarImage && (
+            <img
+              src={previewNavbarImage}
               alt="Preview"
               className="w-32 h-32 mt-4 border rounded-lg"
             />

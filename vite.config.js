@@ -8,6 +8,7 @@ export default defineConfig({
       VITE_BACKEND_URL_GLOBAL: process.env.VITE_BACKEND_URL_GLOBAL,
       VITE_BACKEND_URL_LOCAL: process.env.VITE_BACKEND_URL_LOCAL,
       VITE_APP_ENVIRONMENT: process.env.VITE_APP_ENVIRONMENT,
+      VITE_CLOUDINARY_URL : process.env.VITE_CLOUDINARY_URL
     },
   },
   plugins: [react()],

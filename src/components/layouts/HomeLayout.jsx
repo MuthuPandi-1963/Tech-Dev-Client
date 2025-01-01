@@ -67,7 +67,6 @@ export default function HomeLayout() {
           <nav className="  flex items-center justify-between px-4 py-3 lg:px-8 bg-gray-50">
             {/* Logo */}
             <Logo />
-
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
               <button

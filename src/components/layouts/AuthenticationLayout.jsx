@@ -30,15 +30,6 @@ export default function AuthenticationLayout() {
           >
             <div className="flex justify-between">
               <div className="flex-grow grid  items-center gap-y-2">
-                {/* <p className="justify-self-center"><DiamondIcon classStyle=" w-16 h-12"/></p> */}
-                
-                
-                {/* <div className="grid justify-center ">
-                  <h1 className="text-xl font-medium tracking-tight">
-                    Gadgets Heaven
-                  </h1>
-                  <p className="text-md text-black">Please SignIn to Continue</p>
-                </div> */}
                 <h1 className="text-center text-2xl font-medium tracking-tight">{authState.name[0].toUpperCase()+authState.name.slice(1,)} your Account</h1>
               </div>
               <button onClick={() => authDispatch({type:"close"})}>

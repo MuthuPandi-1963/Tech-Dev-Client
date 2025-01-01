@@ -119,7 +119,7 @@ const AddProduct = () => {
 
     try {
       const uploadResponse = await axios.post(
-        "https://api.cloudinary.com/v1_1/dh2r2wxw0/image/upload",
+        import.meta.env.VITE_CLOUDINARY_URL,
         data
       );
       console.log(uploadResponse);

@@ -5,6 +5,7 @@ export default function ProfileLayout({open,setOpen}) {
 
   return (
     <>
+    
       {open && (
         <div className="fixed inset-0 flex items-center justify-center z-10 bg-gray-500/75 transition-opacity duration-500 ease-in-out">
           <div className="relative w-full max-w-md bg-white rounded-lg shadow-xl">

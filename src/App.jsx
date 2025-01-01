@@ -30,10 +30,10 @@ import OrderLayout from './components/layouts/OrderLayout';
 import Favorites from './components/pages/Orders/Favourites';
 import CheckAuth from './helpers/CheckAuth';
 const App = () => {
-  // const dispatch = useDispatch()
-  // useEffect(()=>{
-  //   dispatch(RefreshAuthThunk())
-  // },[])
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(RefreshAuthThunk())
+  },[])
   return (
     <>
     <Routes>

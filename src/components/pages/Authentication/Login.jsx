@@ -7,6 +7,14 @@ import { AuthContext } from "../../../store/Context/AuthContext";
 import LoginThunk from "../../../store/Thunks/Authentication/LoginThunk";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
+
+const backendUrlGlobal = import.meta.env.VITE_BACKEND_URL_GLOBAL;
+const backendUrlLocal = import.meta.env.VITE_BACKEND_URL_LOCAL;
+const appEnvironment = import.meta.env.VITE_APP_ENVIRONMENT;
+const appUrl =appEnvironment === "production" ? backendUrlGlobal : backendUrlLocal 
+console.log(appUrl);
+
+
 const LoginFormData = {
   email :"",
   password : ""
@@ -67,10 +75,10 @@ export default function Login() {
 
   }
   async function HandleGoogleLogin(){
-      const value = window.open('https://gadgets-heaven-81z9.onrender.com/auth/google', '_self'); 
+      const value = window.open(`${appUrl}/auth/google`, '_self'); 
   }
   async function HandleGithubLogin(){
-    const value = window.open('https://gadgets-heaven-81z9.onrender.com/oauth/github', '_self'); 
+    const value = window.open(`${appUrl}/oauth/github`, '_self'); 
 }
   return(
     <div className="max-w-md mx-auto px-3 py-2 bg-white rounded-lg">

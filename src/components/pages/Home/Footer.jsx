@@ -5,7 +5,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { DiamondIcon } from "../../../utilities/Icons";
 import GoogleIcon from '@mui/icons-material/Google';
 import Logo from "./Logo";
 const Footer = () => {
