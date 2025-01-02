@@ -11,6 +11,11 @@ import AddOrderThunk from "../../../store/Thunks/Orders/AddOrderThunk";
 import { addToCartThunk } from "../../../store/Thunks/Carts/CartsThunk";
 import { addToFavoriteThunk } from "../../../store/Thunks/Carts/FavoriteThunk";
 import { AuthContext } from "../../../store/Context/AuthContext";
+import { productStore } from "../../../store/Context/StateCall";
+import Media from "../../../helpers/skeleton/ProductOverviewSkeleton";
+
+
+
 
 const ProductOverview = () => {
   const { productId } = useParams();
@@ -19,7 +24,9 @@ const ProductOverview = () => {
   const dispatch = useDispatch();
   const {user, isAuthenticated} = useSelector(state=>state.auth)
   const {authDispatch} = useContext(AuthContext)
-
+  const {data , isLoading} = useSelector(productStore)
+  console.log(isLoading,data);
+  
   // Function to handle add to cart action
   const handleAddOrder = () => {
     if(!isAuthenticated){
@@ -50,8 +57,8 @@ const ProductOverview = () => {
   }, [productId, dispatch]);
 
 
-  if (!product) {
-    return <div className="text-center mt-20">Loading product details...</div>;
+  if (isLoading || !product) {
+    return <Media loading={true} />;
   }
   async function handleAddFavorite(){
     if(!isAuthenticated){
@@ -150,3 +157,5 @@ const ProductOverview = () => {
 };
 
 export default ProductOverview;
+
+

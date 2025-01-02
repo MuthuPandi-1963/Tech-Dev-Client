@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GetBrandProductsThunk from "../../../store/Thunks/Products/GetBrandProducts";
 import Breadcrumb from "../../../helpers/Breadcrumb";
 import ProductsLayout from "../../layouts/ProductsLayout";
+import CategorySkeleton from "../../../helpers/skeleton/CategorieSkeleton";
+import { productStore } from "../../../store/Context/StateCall";
 
 const BrandOverview = () => {
   // Get categoryId from URL
@@ -12,6 +14,7 @@ const BrandOverview = () => {
   const [brandDetails, setBrandDetails] = useState(null);
   const dispatch = useDispatch();
   const location = useLocation();
+  const {data , isLoading} = useSelector(productStore)
   useEffect(() => {
     const fetchBrandDetails = async () => {
       // Fetch the details of the category using the categoryId
@@ -30,8 +33,8 @@ const BrandOverview = () => {
     fetchBrandDetails();
   }, [brandId]); // Refetch when brandId changes
 
-  if (!brandDetails) {
-    return <div>Loading brand details...</div>;
+  if (!brandDetails || isLoading) {
+    return <CategorySkeleton loading={true}/>;
   }
   console.log(location.pathname.split("/"));
 
@@ -45,7 +48,7 @@ const BrandOverview = () => {
           </h1>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {products.map((product) => (
+          {brandDetails.map((product) => (
             <ProductsLayout key={product._id} product={product} />
           ))}
         </div>

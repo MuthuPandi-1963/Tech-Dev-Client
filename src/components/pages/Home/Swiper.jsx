@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 import { useDispatch } from "react-redux";
 import GetFeatureThunk from "../../../store/Thunks/Products/GetFeatureThunk";
 import { Link } from "react-router-dom";
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 const GadgetSlider = () => {
   const [slider, setSlider] = useState([]);
@@ -31,8 +33,15 @@ const GadgetSlider = () => {
   return (
     <div className="mt-2 w-[95%] mx-auto">
       {slider.length === 0 ? (
-        <p>Loading...</p>
-      ) : (
+    <Stack spacing={1}>
+      {/* For variant="text", adjust the height via font-size */}
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      {/* For other variants, adjust the size with `width` and `height` */}
+      <Skeleton variant="circular" width={40} height={40} />
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rounded" width={210} height={60} />
+    </Stack>
+  ) : (
         <Swiper
           ref={swiperRef} // Attach the ref to the Swiper component
           modules={[Navigation, Pagination, Autoplay]}
