@@ -39,7 +39,7 @@ const Brand = ({ BtnStyle, imageStyle }) => {
       <div className={BtnStyle}>
         {brandItems.map((brand) => (
           <Link
-            to={`${brand._id}_${brand.brandName}`}
+            to={`/shopping/brand/${brand._id}_${brand.brandName}`}
             key={brand._id} // Use unique ID as key instead of index
             className={`relative group cursor-pointer overflow-hidden rounded-lg shadow-lg ${imageStyle}`}
           >

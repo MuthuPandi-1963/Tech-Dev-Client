@@ -68,7 +68,18 @@ export default function HomeLayout() {
             {/* Logo */}
             <Logo />
             {/* Mobile Menu Button */}
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center">
+            <div className="flex  gap-x-4 items-center mx-4">
+            <Link to={"/"}>
+              <HomeOutlined />
+            </Link>
+            <Link to={`/orders/favorite/${user.id}`}>
+              <FavoriteBorderIcon />
+            </Link>
+            <Link to={`/orders/carts/${user.id}`}>
+              <LocalMallOutlinedIcon sx={{color:"black"}} />
+            </Link>
+          </div>
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 className="-m-2.5 inline-flex items-center justify-center p-2.5 text-gray-700"
@@ -164,6 +175,7 @@ export default function HomeLayout() {
                 </Button>
               )}
             </div>
+            
           </nav>
 
           {mobileMenuOpen && (
