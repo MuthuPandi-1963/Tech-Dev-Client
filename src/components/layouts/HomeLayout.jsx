@@ -167,12 +167,12 @@ export default function HomeLayout() {
                   )}
                 </div>
               ) : (
-                <Button
+                <button
                   onClick={() => authDispatch({ type: "login" })}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  className="bg-blue-700 text-white px-8 py-1 rounded-sm hover:bg-blue-500"
                 >
                   Login
-                </Button>
+                </button>
               )}
             </div>
             
