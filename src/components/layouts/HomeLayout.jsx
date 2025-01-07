@@ -154,6 +154,7 @@ export default function HomeLayout() {
                   </Link>
                   <button onClick={() => setOpen(true)}>
                     <AccountCircleOutlinedIcon />
+                    <p className="text-md font-medium">{user?.username}</p>
                   </button>
                   <Profile open={open} setOpen={setOpen} />
                   {user?.role === "admin" && (

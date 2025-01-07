@@ -144,4 +144,5 @@ const initialState = {
 })
 
 export const {setProduct} = productReducer.actions;
-export default productReducer.reducer;
+const ProductSlice = productReducer.reducer;
+export default ProductSlice;
