@@ -57,7 +57,7 @@ const ProductOverview = () => {
   }, [productId, dispatch]);
 
 
-  if (isLoading || !product) {
+  if (isLoading) {
     return <Media loading={true} />;
   }
   async function handleAddFavorite(){
