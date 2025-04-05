@@ -19,7 +19,7 @@ import Media from "../../../helpers/skeleton/ProductOverviewSkeleton";
 
 const ProductOverview = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
   const [relatedProduct, setRelatedProduct] = useState([]);
   const dispatch = useDispatch();
   const {user, isAuthenticated} = useSelector(state=>state.auth)
@@ -57,9 +57,9 @@ const ProductOverview = () => {
   }, [productId, dispatch]);
 
 
-  if (isLoading) {
-    return <Media loading={true} />;
-  }
+  // if (isLoading) {
+  //   return <Media loading={true} />;
+  // }
   async function handleAddFavorite(){
     if(!isAuthenticated){
       authDispatch({type :"login"})
