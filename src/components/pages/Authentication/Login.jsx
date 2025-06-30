@@ -78,7 +78,7 @@ export default function Login() {
       const value = window.open(`${appUrl}/auth/google`, '_self'); 
   }
   async function HandleGithubLogin(){
-    const value = window.open(`${appUrl}/oauth/github`, '_self'); 
+    const value = window.open(`${appUrl}/oauth/github/callback`, '_self'); 
 }
   return(
     <div className="max-w-md mx-auto px-3 py-2 bg-white rounded-lg">
